@@ -3,7 +3,7 @@
 """
 generate.py
 
-通用的 Stable Diffusion / XL 本地模型推理脚本，适配你项目的 models/ 目录结构。
+通用的 Stable Diffusion / XL 本地模型推理脚本，适配项目的 models/ 目录结构。
 特性：
 - 支持从本地 models/ 目录加载（兼容 diffusers 格式）
 - 支持单 prompt 或 prompt 列表文件批量生成
@@ -12,10 +12,10 @@ generate.py
 - 可选启用 xformers（若已安装）
 
 用法示例：
-    python generate.py --model-dir models --prompt "a girl in hanfu, anime style" --out outputs/test.png
-    python generate.py --model-dir models --prompts-file prompts.txt --num-per-prompt 2 --out outputs/
+    python scripts/generate.py --model-dir models --prompt "a girl in hanfu, anime style" --out outputs/test.png
+    python scripts/generate.py --model-dir models --prompts-file prompts.txt --num-per-prompt 2 --out outputs/
 
-依赖（建议写入 requirements.txt）：
+依赖：
     torch, diffusers, transformers, accelerate, safetensors, Pillow
 
 作者：你的项目组

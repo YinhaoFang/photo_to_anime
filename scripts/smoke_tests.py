@@ -3,7 +3,6 @@ import torch, diffusers
 from PIL import Image
 import cv2
 import numpy as np
-
 print("python", __import__('sys').version)
 print("torch:", torch.__version__, "cuda available:", torch.cuda.is_available())
 if torch.cuda.is_available():
