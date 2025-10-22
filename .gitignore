@@ -1,0 +1,11 @@
+# .gitignore
+venv/
+__pycache__/
+*.pyc
+data/
+models/
+outputs/
+logs/
+*.ckpt
+*.safetensors
+.env

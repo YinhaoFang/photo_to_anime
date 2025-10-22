@@ -1,0 +1,15 @@
+torch
+torchvision
+diffusers
+transformers
+accelerate
+safetensors
+opencv-python
+Pillow
+numpy
+tqdm
+pytorch-fid
+peft
+bitsandbytes
+scikit-image
+gradio
