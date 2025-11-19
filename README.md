@@ -1,23 +1,39 @@
 # photo_to_anime
 
 ## 🎯 项目目标
-将真实人物照片转换为动漫风格图像，实现现实到二次元的**风格迁移（Style Transfer）**。  
-项目基于 **Stable Diffusion + ControlNet + LoRA**，利用现成的预训练模型*Animagine-XL-4.0*实现高质量动漫化生成。
+将现实人物照片转换为具有**国风特色（Chinese traditional / Hanfu-like）**的动漫风格图像（Photo → Anime Style Transfer）。
+技术栈：Stable Diffusion (Animagine-XL) + ControlNet（结构/姿态约束）+ LoRA（轻量风格微调）。目标是在保留人物内容（轮廓、姿态、五官）前提下，让生成结果呈现明显且稳定的国风动漫视觉特征。
 
 ---
 
 ## 👥 团队成员
 - 组长：czh  
-- 模型加载与优化组：fyh、姓名  
-- 推理展示与交互组：czh、姓名  
-- 风格评估与报告组：姓名、姓名  
+- 模型加载与优化组：fyh、yzy  
+- 推理展示与交互组：czh、lrb  
+- 风格评估与报告组：lpz、bky  
 
 ---
 
 ## 🧩 数据策略
-采用 **非成对（unpaired）** 数据策略：  
-- 单独收集“动漫风格图像”与“真实照片”两类数据集；  
-- 模型不依赖配对样本，而通过 ControlNet 或图像特征约束实现结构保持与风格转换。
+
+人像（Photo）：CelebAMask-HQ（使用其裁剪/对齐后的高质量人像作为 photo 域）
+
+动漫（Anime）：Anime Face Dataset（Kaggle）作为基础二次元数据域
+
+国风补充集（anime_guofeng）：组内额外收集数百至一千张国风/汉服/国画风格动漫或插画，用于 LoRA 微调（增强辨识度）
+
+数据策略：采用**非成对（unpaired）**数据 — 使用大量通用动漫图建立基础生成能力，再用少量国风样本训练 LoRA 以强化特色风格。
+
+### 🧩 数据目录规范
+data/
+├── raw/
+│   ├── photos/             # CelebAMask-HQ 原始/裁剪人像
+│   ├── anime/              # Anime Face Dataset 原始动漫图
+│   └── anime_guofeng/      # 收集的国风风格图（少量）
+└── processed/
+    ├── photos/             # 预处理后人像（512×512 等）
+    ├── anime/              # 预处理后动漫图
+    └── edges/              # ControlNet 所需边缘/线稿（与 photos 对应或独立）
 
 ---
 
